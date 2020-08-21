@@ -5,7 +5,7 @@
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "configure": "./addon-src node-gyp configure",
+    "configure": "node-gyp configure",
     "build": "node-gyp build"
   },
   "keywords": [],
