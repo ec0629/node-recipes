@@ -1,0 +1,17 @@
+{
+  "name": "cpp_addons",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "configure": "./addon-src node-gyp configure",
+    "build": "node-gyp build"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "node-gyp": "^7.1.0"
+  }
+}
