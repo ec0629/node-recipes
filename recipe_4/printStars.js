@@ -5,7 +5,9 @@ const print = (stars, header) => {
 };
 
 // test to see if script is being required or ran by itself
-if (require.main == module) {
+console.log(module);
+console.log(require.main);
+if (require.main === module) {
     // will enter if run as stand-alone
     print(process.argv[2], process.argv[3]);
 } else {
