@@ -21,7 +21,11 @@ const withTime = new WithTime();
 
 withTime.on('begin', () => console.log('About to execute'));
 withTime.on('end', () => console.log('Done with execute'));
+withTime.on('error', console.error);
 
+// when multiple event handlers are subscribed to the same event
+// they will always execute in the order with which they are registered
 withTime.on('data', (data) => console.log(`length: ${data.length}`));
+withTime.on('data', (data) => console.log(`characters: ${data.toString().length}`));
 
 withTime.execute(fs.readFile, __filename);

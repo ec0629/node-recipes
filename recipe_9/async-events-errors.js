@@ -24,4 +24,8 @@ withTime.on('end', () => console.log('Done with execute'));
 
 withTime.on('data', (data) => console.log(`length: ${data.length}`));
 
-withTime.execute(fs.readFile, __filename);
+// we are not listening for the error event
+// withTime.on('error', console.error);
+// therefore if an error is emitted without a listener
+// the process will exit, and the 'end' event will not fire
+withTime.execute(fs.readFile, '');

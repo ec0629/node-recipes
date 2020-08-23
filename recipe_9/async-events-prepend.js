@@ -21,7 +21,10 @@ const withTime = new WithTime();
 
 withTime.on('begin', () => console.log('About to execute'));
 withTime.on('end', () => console.log('Done with execute'));
+withTime.on('error', console.error);
 
 withTime.on('data', (data) => console.log(`length: ${data.length}`));
+// using the prependListener function will result in that handler being executed first
+withTime.prependListener('data', (data) => console.log(`characters: ${data.toString().length}`));
 
 withTime.execute(fs.readFile, __filename);

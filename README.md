@@ -67,6 +67,10 @@ Advanced Node.js, Samer Buna, Pluralsight, (February 16, 2017)
 - Demonstrates an easy way for providing both options for handling asynchronous operations
 ---
 
-## Recipe 9: extending eventEmitter
+## Recipe 9: extending eventEmitter, error event, multiple handlers, .once, .prependListener
 Advanced Node.js, Samer Buna, Pluralsight, (February 16, 2017)  
-- toy example of extending event emitter
+- The error event is special because if an error event is emitted without a listener
+subscribed then the process will exit
+- handlers are executed in the order with which they are registered to the event, this
+can be manipulated using .prependListener()
+- a handler registered to an event using .once() will only fire the first time
