@@ -9,6 +9,7 @@
   - [Recipe 6: using C++ addons](#recipe-6-using-c-addons)
   - [Recipe 7: Use case for process.nextTick](#recipe-7-use-case-for-processnexttick)
   - [Recipe 8: Providing Callback and Promise API to a function](#recipe-8-providing-callback-and-promise-api-to-a-function)
+  - [Recipe 9: extending eventEmitter](#recipe-9-extending-eventemitter)
 
 
 ## Recipe 1: using string functions on buffers  
@@ -53,7 +54,7 @@ run the script perform the following steps:
 4. npm start
 ---
 
-## Recipe 7: Use case for process.nextTick
+## Recipe 7: use case for process.nextTick
 Advanced Node.js, Samer Buna, Pluralsight, (February 16, 2017)  
 - the first version of fileSize mixes both async and sync operations
 - Node.js best practices dictate that functions should be fully synchronous or asynchronous
@@ -61,6 +62,11 @@ Advanced Node.js, Samer Buna, Pluralsight, (February 16, 2017)
 - process.nextTick pushes the result to the front of the Node Event Queue
 ---
 
-## Recipe 8: Providing Callback and Promise API to a function
+## Recipe 8: providing Callback and Promise API to a function
 Advanced Node.js, Samer Buna, Pluralsight, (February 16, 2017)  
 - Demonstrates an easy way for providing both options for handling asynchronous operations
+---
+
+## Recipe 9: extending eventEmitter
+Advanced Node.js, Samer Buna, Pluralsight, (February 16, 2017)  
+- toy example of extending event emitter
