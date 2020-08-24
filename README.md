@@ -12,6 +12,8 @@
   - [Recipe 9: extending eventEmitter, error event, multiple handlers, .once, .prependListener](#recipe-9-extending-eventemitter-error-event-multiple-handlers-once-prependlistener)
   - [Recipe 11: Node.js REPL, loading modules into a session, TAB completion, _](#recipe-11-nodejs-repl-loading-modules-into-a-session-tab-completion-_)
   - [Recipe 12: using TCP sockets to create a basic chat server](#recipe-12-using-tcp-sockets-to-create-a-basic-chat-server)
+  - [Recipe 13: getting familiar with the DNS module](#recipe-13-getting-familiar-with-the-dns-module)
+  - [Recipe 14: getting familiar with the UDP/dgram module](#recipe-14-getting-familiar-with-the-udpdgram-module)
 
 
 ## Recipe 1: using string functions on buffers  
@@ -109,3 +111,15 @@ Advanced Node.js, Samer Buna, Pluralsight, (February 16, 2017)
 - the second example net-multiple-clients.js connects several clients together
 - net-improved-chat.js has some basic improvements on the underlying functionality
 - these examples demonstrate the usage of standard TCP socket events such as connect, end and data
+
+---
+
+## Recipe 13: getting familiar with the DNS module
+Advanced Node.js, Samer Buna, Pluralsight, (February 16, 2017)  
+- brief discussion on the differences between the lookup and resolve methods
+
+---
+
+## Recipe 14: getting familiar with the UDP/dgram module
+Advanced Node.js, Samer Buna, Pluralsight, (February 16, 2017)  
+- brief of creating both a udp server and client
