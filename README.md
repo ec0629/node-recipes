@@ -15,12 +15,15 @@
     - [Recipe 12: using TCP sockets to create a basic chat server](#recipe-12-using-tcp-sockets-to-create-a-basic-chat-server)
     - [Recipe 13: getting familiar with the DNS module](#recipe-13-getting-familiar-with-the-dns-module)
     - [Recipe 14: getting familiar with the UDP/dgram module](#recipe-14-getting-familiar-with-the-udpdgram-module)
+    - [Recipe 15: error handling best practices](recipe_15/lorem1.txt)
+  
   - [Notes](#notes)
     - [1: Understanding how require works](#1-understanding-how-require-works)
     - [2: CLI debugging](#2-cli-debugging)
     - [3: Chrome Dev Tools debugging](#3-chrome-dev-tools-debugging)
     - [4: Understanding the Event Queue](#4-understanding-the-event-queue)
     - [5: 3 ways to create Buffers objects](#5-3-ways-to-create-buffers-objects)
+    - [6: Errors vs Exceptions](#6-errors-vs-exceptions)
 
 # Recipes
 ## Recipe 1: using string functions on buffers  
@@ -135,6 +138,13 @@ Advanced Node.js, Samer Buna, Pluralsight, (February 16, 2017)
 
 ---
 
+## Recipe 15: error handling best practices
+Node.js: Getting Started, Samer Buna, Pluralsight, (September 11, 2018)  
+- demonstrates how overly generic catch can mask underlying issues and
+provides an example of how to address the issue
+
+---
+
 # Notes
 ## 1: Understanding how require works
 when a module is created we are given access to several local variables that may appear global.
@@ -227,3 +237,14 @@ const a = Buffer.alloc(8);
 const b = Buffer.allocUnsage(8);
 const c = Buffer.from('string');
 ```
+
+---
+
+## 6: Errors vs Exceptions
+- An error is a "problem" whereas an exception is a "condition"
+  (Node.js: Getting Started, Samer Buna, Pluralsight, (September 11, 2018))
+- Fundamental question we need to ask ourselves is "Is it dangerous for the program to continue
+after this error has occurred if yes then we let the program fail. Usually this is the result
+of unforeseen issues however.
+- Proceeding gracefully may simply mean we halt the process and inform the user that something
+wrong has occurred
