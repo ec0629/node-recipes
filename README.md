@@ -58,8 +58,10 @@ Advanced Node.js, Samer Buna, Pluralsight, (February 16, 2017)
 The binding.gyp and hello.cc files were obtained from the Node.js documents page on C++ addons. To
 run the script perform the following steps:
 1. npm install
-2. npm run config (a build folder will be created in the top-level recipe_6 directory)
-3. npm run build
+2. npm run configure OR npx node-gyp configure
+    - a build folder will be created in the top-level recipe_6 directory
+    - npx will execute local modules instead of having to create a script for them
+3. npm run build OR npx node-gyp build
 4. npm start
 
 ---
