@@ -1,21 +1,28 @@
 # Node.js Recipes
 
 # Table of Contents
-  - [Recipe 1: using string functions on buffers](#recipe-1-using-string-functions-on-buffers)
-  - [Recipe 2: using string decoder](#recipe-2-using-string-decoder)
-  - [Recipe 3: custom entrypoint for a node package](#recipe-3-custom-entrypoint-for-a-node-package)
-  - [Recipe 4: determining if package is executed as a script or if being required by another script](#recipe-4-determining-if-package-is-executed-as-a-script-or-if-being-required-by-another-script)
-  - [Recipe 5: understanding how circular dependencies are dealt with in node](#recipe-5-understanding-how-circular-dependencies-are-dealt-with-in-node)
-  - [Recipe 6: using C++ addons](#recipe-6-using-c-addons)
-  - [Recipe 7: Use case for process.nextTick](#recipe-7-use-case-for-processnexttick)
-  - [Recipe 8: Providing Callback and Promise API to a function](#recipe-8-providing-callback-and-promise-api-to-a-function)
-  - [Recipe 9: extending eventEmitter, error event, multiple handlers, .once, .prependListener](#recipe-9-extending-eventemitter-error-event-multiple-handlers-once-prependlistener)
-  - [Recipe 11: Node.js REPL, loading modules into a session, TAB completion, _](#recipe-11-nodejs-repl-loading-modules-into-a-session-tab-completion-_)
-  - [Recipe 12: using TCP sockets to create a basic chat server](#recipe-12-using-tcp-sockets-to-create-a-basic-chat-server)
-  - [Recipe 13: getting familiar with the DNS module](#recipe-13-getting-familiar-with-the-dns-module)
-  - [Recipe 14: getting familiar with the UDP/dgram module](#recipe-14-getting-familiar-with-the-udpdgram-module)
+  - [Recipes](#recipes)
+    - [Recipe 1: using string functions on buffers](#recipe-1-using-string-functions-on-buffers)
+    - [Recipe 2: using string decoder](#recipe-2-using-string-decoder)
+    - [Recipe 3: custom entrypoint for a node package](#recipe-3-custom-entrypoint-for-a-node-package)
+    - [Recipe 4: determining if package is executed as a script or if being required by another script](#recipe-4-determining-if-package-is-executed-as-a-script-or-if-being-required-by-another-script)
+    - [Recipe 5: understanding how circular dependencies are dealt with in node](#recipe-5-understanding-how-circular-dependencies-are-dealt-with-in-node)
+    - [Recipe 6: using C++ addons](#recipe-6-using-c-addons)
+    - [Recipe 7: Use case for process.nextTick](#recipe-7-use-case-for-processnexttick)
+    - [Recipe 8: Providing Callback and Promise API to a function](#recipe-8-providing-callback-and-promise-api-to-a-function)
+    - [Recipe 9: extending eventEmitter, error event, multiple handlers, .once, .prependListener](#recipe-9-extending-eventemitter-error-event-multiple-handlers-once-prependlistener)
+    - [Recipe 11: Node.js REPL, loading modules into a session, TAB completion, _](#recipe-11-nodejs-repl-loading-modules-into-a-session-tab-completion-_)
+    - [Recipe 12: using TCP sockets to create a basic chat server](#recipe-12-using-tcp-sockets-to-create-a-basic-chat-server)
+    - [Recipe 13: getting familiar with the DNS module](#recipe-13-getting-familiar-with-the-dns-module)
+    - [Recipe 14: getting familiar with the UDP/dgram module](#recipe-14-getting-familiar-with-the-udpdgram-module)
+  - [Notes](#notes)
+    - [1: Understanding how require works](#1-understanding-how-require-works)
+    - [2: CLI debugging](#2-cli-debugging)
+    - [3: Chrome Dev Tools debugging](#3-chrome-dev-tools-debugging)
+    - [4: Understanding the Event Queue](#4-understanding-the-event-queue)
+    - [5: 3 ways to create Buffers objects](#5-3-ways-to-create-buffers-objects)
 
-
+# Recipes
 ## Recipe 1: using string functions on buffers  
 Advanced Node.js, Samer Buna, Pluralsight, (February 16, 2017)  
 - the same methods are available for both strings and buffers
@@ -125,3 +132,98 @@ Advanced Node.js, Samer Buna, Pluralsight, (February 16, 2017)
 ## Recipe 14: getting familiar with the UDP/dgram module
 Advanced Node.js, Samer Buna, Pluralsight, (February 16, 2017)  
 - brief of creating both a udp server and client
+
+---
+
+# Notes
+## 1: Understanding how require works
+when a module is created we are given access to several local variables that may appear global.
+This is because when our module is required in the future Node is implicitly wrapping our code
+in the file with:
+```js
+(function(exports, module, require, __dirname, __filename) {
+```
+And:
+```js
+  return module.exports
+})
+```
+Going back to when our module is required by another module this wrapping is performed and then
+that new function is executed returning the module.exports as well as caching them for future use.
+
+Steps performed by Node when requiring a module:
+1. Resolving, search default paths or turning relative to absolute path
+2. Loading, reading the file
+3. Wrapping the module in an IIFE, gives a module private scope
+4. Evaluating, what the vm does with the code in the module
+5. Caching to be reused
+    
+console logging the module object  
+1. has an id property, '.' for startup file, absolute path for every module
+2. paths property which is an array of default paths to search for the module
+3. parent property, all modules that require the current module
+4. children, all modules required by the current module
+5. [Circular] denotes a circular dependencies
+6. exports, values exported by the module, values added to exports inside an async function
+will NOT be exported to the requiring module
+
+---
+
+## 2: CLI debugging
+[Node Debugger Documentation](https://nodejs.org/api/debugger.html)
+```shell
+# inspect argument differs from --inspect flag which is used when debugging with Chrome Dev Tools
+# also applies to nodemon
+$ node inspect <filename>
+debug> list(10) # print the 10 lines above and below the current line the program is stopped on
+debug> n # move to the next line of the program
+debug> c # continue the program
+debug> repl # can access program's current environment from here
+
+# Set a breakpoint in a Node program
+debugger; # include this in source code to cause the program to start there
+```
+
+## 3: Chrome Dev Tools debugging
+```shell
+$ node --inspect <filename> # by defualt opens port 9229
+```
+If debugging is required during app startup we can pause the program at the first line and
+  wait for the debugger to attach by using the following command line argument
+```shell
+$ node --inspect-brk <filename>
+```
+
+## 4: Understanding the Event Queue
+process.nextTick, setImmediate, timers and the Event Queue
+when the call stack is empty, Node retrieves the next job from the event queue,
+and push it to the call stack and move finish that job until:
+
+1. asynchronous functionality is reached, at which point the job is moved
+  off the call stack and handled by Node, and the next job is taken from the event queue.
+  Once the asynchronous job is completed it is moved to the event queue.
+2. the job is complete, the next job is taken from the event queue.
+
+Asynchronous job generally consist of (also the order of priority each completed job enters 
+and is removed from the event queue):
+1. process.nextTick (when called these jobs are pushed to the front of the Event Queue)
+2. setImmediate (basically a timer with a 0 ms. delay)
+3. timers
+4. I/O functions
+The above is 
+
+---
+
+## 5: 3 ways to create Buffers objects
+1. *alloc()*, will allocate a buffer of the desired size and set the contents
+  to empty (all zeros)
+2. *allocUnsafe()*, same as #1 but will not zero out the contents of the buffer
+  has better performance than #1 but might cause side-effects
+3. *from()*, accepts one of several types and creates a buffer equal to the size
+  of that object
+
+```js
+const a = Buffer.alloc(8);
+const b = Buffer.allocUnsage(8);
+const c = Buffer.from('string');
+```
