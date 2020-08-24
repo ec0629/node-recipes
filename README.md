@@ -11,6 +11,7 @@
   - [Recipe 8: Providing Callback and Promise API to a function](#recipe-8-providing-callback-and-promise-api-to-a-function)
   - [Recipe 9: extending eventEmitter, error event, multiple handlers, .once, .prependListener](#recipe-9-extending-eventemitter-error-event-multiple-handlers-once-prependlistener)
   - [Recipe 11: Node.js REPL, loading modules into a session, TAB completion, _](#recipe-11-nodejs-repl-loading-modules-into-a-session-tab-completion-_)
+  - [Recipe 12: using TCP sockets to create a basic chat server](#recipe-12-using-tcp-sockets-to-create-a-basic-chat-server)
 
 
 ## Recipe 1: using string functions on buffers  
@@ -102,3 +103,9 @@ the terminal window
 
 ---
 
+## Recipe 12: using TCP sockets to create a basic chat server
+Advanced Node.js, Samer Buna, Pluralsight, (February 16, 2017)  
+- the first example net.js is a simple echo server
+- the second example net-multiple-clients.js connects several clients together
+- net-improved-chat.js has some basic improvements on the underlying functionality
+- these examples demonstrate the usage of standard TCP socket events such as connect, end and data
