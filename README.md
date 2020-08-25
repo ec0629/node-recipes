@@ -1,29 +1,30 @@
 # Node.js Recipes
 
 # Table of Contents
-  - [Recipes](#recipes)
-    - [Recipe 1: using string functions on buffers](#recipe-1-using-string-functions-on-buffers)
-    - [Recipe 2: using string decoder](#recipe-2-using-string-decoder)
-    - [Recipe 3: custom entrypoint for a node package](#recipe-3-custom-entrypoint-for-a-node-package)
-    - [Recipe 4: determining if package is executed as a script or if being required by another script](#recipe-4-determining-if-package-is-executed-as-a-script-or-if-being-required-by-another-script)
-    - [Recipe 5: understanding how circular dependencies are dealt with in node](#recipe-5-understanding-how-circular-dependencies-are-dealt-with-in-node)
-    - [Recipe 6: using C++ addons](#recipe-6-using-c-addons)
-    - [Recipe 7: Use case for process.nextTick](#recipe-7-use-case-for-processnexttick)
-    - [Recipe 8: Providing Callback and Promise API to a function](#recipe-8-providing-callback-and-promise-api-to-a-function)
-    - [Recipe 9: extending eventEmitter, error event, multiple handlers, .once, .prependListener](#recipe-9-extending-eventemitter-error-event-multiple-handlers-once-prependlistener)
-    - [Recipe 11: Node.js REPL, loading modules into a session, TAB completion, _](#recipe-11-nodejs-repl-loading-modules-into-a-session-tab-completion-_)
-    - [Recipe 12: using TCP sockets to create a basic chat server](#recipe-12-using-tcp-sockets-to-create-a-basic-chat-server)
-    - [Recipe 13: getting familiar with the DNS module](#recipe-13-getting-familiar-with-the-dns-module)
-    - [Recipe 14: getting familiar with the UDP/dgram module](#recipe-14-getting-familiar-with-the-udpdgram-module)
-    - [Recipe 15: error handling best practices](recipe_15/lorem1.txt)
+  [Recipes](#recipes)
+  - [Recipe 1: using string functions on buffers](#recipe-1-using-string-functions-on-buffers)
+  - [Recipe 2: using string decoder](#recipe-2-using-string-decoder)
+  - [Recipe 3: custom entrypoint for a node package](#recipe-3-custom-entrypoint-for-a-node-package)
+  - [Recipe 4: determining if package is executed as a script or if being required by another script](#recipe-4-determining-if-package-is-executed-as-a-script-or-if-being-required-by-another-script)
+  - [Recipe 5: understanding how circular dependencies are dealt with in node](#recipe-5-understanding-how-circular-dependencies-are-dealt-with-in-node)
+  - [Recipe 6: using C++ addons](#recipe-6-using-c-addons)
+  - [Recipe 7: Use case for process.nextTick](#recipe-7-use-case-for-processnexttick)
+  - [Recipe 8: Providing Callback and Promise API to a function](#recipe-8-providing-callback-and-promise-api-to-a-function)
+  - [Recipe 9: extending eventEmitter, error event, multiple handlers, .once, .prependListener](#recipe-9-extending-eventemitter-error-event-multiple-handlers-once-prependlistener)
+  - [Recipe 11: Node.js REPL, loading modules into a session, TAB completion, _](#recipe-11-nodejs-repl-loading-modules-into-a-session-tab-completion-_)
+  - [Recipe 12: using TCP sockets to create a basic chat server](#recipe-12-using-tcp-sockets-to-create-a-basic-chat-server)
+  - [Recipe 13: getting familiar with the DNS module](#recipe-13-getting-familiar-with-the-dns-module)
+  - [Recipe 14: getting familiar with the UDP/dgram module](#recipe-14-getting-familiar-with-the-udpdgram-module)
+  - [Recipe 15: error handling best practices](#recipe-15-error-handling-best-practices)
+  - [Recipe 16: basics of unit testing code with Jest](#recipe-16-basics-of-unit-testing-code-with-jest)
   
-  - [Notes](#notes)
-    - [1: Understanding how require works](#1-understanding-how-require-works)
-    - [2: CLI debugging](#2-cli-debugging)
-    - [3: Chrome Dev Tools debugging](#3-chrome-dev-tools-debugging)
-    - [4: Understanding the Event Queue](#4-understanding-the-event-queue)
-    - [5: 3 ways to create Buffers objects](#5-3-ways-to-create-buffers-objects)
-    - [6: Errors vs Exceptions](#6-errors-vs-exceptions)
+  [Notes](#notes)
+  - [1: Understanding how require works](#1-understanding-how-require-works)
+  - [2: CLI debugging](#2-cli-debugging)
+  - [3: Chrome Dev Tools debugging](#3-chrome-dev-tools-debugging)
+  - [4: Understanding the Event Queue](#4-understanding-the-event-queue)
+  - [5: 3 ways to create Buffers objects](#5-3-ways-to-create-buffers-objects)
+  - [6: Errors vs Exceptions](#6-errors-vs-exceptions)
 
 # Recipes
 ## Recipe 1: using string functions on buffers  
@@ -142,6 +143,20 @@ Advanced Node.js, Samer Buna, Pluralsight, (February 16, 2017)
 Node.js: Getting Started, Samer Buna, Pluralsight, (September 11, 2018)  
 - demonstrates how overly generic catch can mask underlying issues and
 provides an example of how to address the issue
+
+---
+
+## Recipe 16: basics of unit testing code with Jest
+Testing JavaScript for Node.js with Mocha, Jonathan Mills, Pluralsight, (May 4, 2017)  
+1. using testing hooks (i.e. beforeAll, beforeEach, afterAll, afterEach) allows for
+  convenience setup and teardown. Each hook is scoped to its parent describe block
+2. describe blocks and tests can invoke the only method and they will be the only
+  tests that are run
+3. the skip method can be used to skip tests without having to comment them out
+4. the todo method can be used to document tests that need to be implemented later
+5. testing asynchronous methods using the callback method
+6. testing asynchronous methods returning Promises using special expect().resolve/reject
+  methods
 
 ---
 
