@@ -160,6 +160,14 @@ Testing JavaScript for Node.js with Mocha, Jonathan Mills, Pluralsight, (May 4, 
 
 ---
 
+## Recipe 17: using Jest mocks to isolate code from its dependencies for unit testing
+Testing JavaScript for Node.js with Mocha, Jonathan Mills, Pluralsight, (May 4, 2017)  
+- demonstrates how to use mock functions where the code being tested has dependencies
+  that it either invokes, relies on for side effects or handles return values.
+- also demonstrates custom matchers in the Jest expect library designed specifically for mocks
+
+---
+
 # Notes
 ## 1: Understanding how require works
 when a module is created we are given access to several local variables that may appear global.
