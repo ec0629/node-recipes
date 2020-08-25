@@ -28,6 +28,7 @@ describe('AuthController', () => {
   // Testing a function that has dependencies and relies on their side effects
   describe('isAuthorized', () => {
     let user;
+    let spy;
 
     beforeEach(() => {
       // we are creating a user object to simplify code
@@ -46,14 +47,14 @@ describe('AuthController', () => {
        * authController which diverges from the principles of unit
        * testing.
        */
-      authController.setUser = jest.fn(authController.setUser);
+      spy = jest.spyOn(authController, 'setUser');
       authController.setUser(user);
     });
 
     test('should return false if not authorized', () => {
       const isAuth = authController.isAuthorized('admin');
       expect(isAuth).toBe(false);
-      expect(authController.setUser).toHaveBeenCalledTimes(1);
+      expect(spy).toHaveBeenCalledTimes(1);
     });
   });
 
