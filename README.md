@@ -168,6 +168,21 @@ Testing JavaScript for Node.js with Mocha, Jonathan Mills, Pluralsight, (May 4, 
 
 ---
 
+## Recipe 18: using manual mocks in Jest to mock modules and complex behaviour
+Testing JavaScript for Node.js with Mocha, Jonathan Mills, Pluralsight, (May 4, 2017)  
+- in this recipe I used a manual mock to mock the https modules request functionality
+  which returns a stream to the callback it receives
+- we start by invoking jest.mock('name_of_module) in our test file. This mocks out the
+  module only for that file any other requiring of the module will recieve the original
+  implementation.
+- the jest.mock() will first look for a manual mock in a folder labeled \_\_mocks\_\_ 
+  at the same directory level as the module to be mocked
+- in the manual mock file we call jest.createMockFromModule('name_of_module') which
+  automocks the module. In this example I then extended the automocked module
+  for the function .request()
+
+---
+
 # Notes
 ## 1: Understanding how require works
 when a module is created we are given access to several local variables that may appear global.
