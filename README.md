@@ -187,6 +187,14 @@ Testing JavaScript for Node.js with Mocha, Jonathan Mills, Pluralsight, (May 4, 
 
 ---
 
+## Recipe 19: HTTP/HTTPS protocol functionality
+Advanced Node.js, Samer Buna, Pluralsight, (February 16, 2017)  
+- understanding the stream/object types that are used in the http/https modules
+- self-signing SSL certificates and setting up https protocol
+- handling different routes and responding in various ways to requests
+
+---
+
 # Notes
 ## 1: Understanding how require works
 when a module is created we are given access to several local variables that may appear global.
