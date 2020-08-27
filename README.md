@@ -17,6 +17,8 @@
   - [Recipe 14: getting familiar with the UDP/dgram module](#recipe-14-getting-familiar-with-the-udpdgram-module)
   - [Recipe 15: error handling best practices](#recipe-15-error-handling-best-practices)
   - [Recipe 16: basics of unit testing code with Jest](#recipe-16-basics-of-unit-testing-code-with-jest)
+  - [Recipe 17: using Jest mocks to isolate code from its dependencies for unit testing](#recipe-17-using-jest-mocks-to-isolate-code-from-its-dependencies-for-unit-testing)
+  - [Recipe 18: using manual mocks in Jest to mock modules and complex behaviour](#recipe-18-using-manual-mocks-in-jest-to-mock-modules-and-complex-behaviour)
   
   [Notes](#notes)
   - [1: Understanding how require works](#1-understanding-how-require-works)
