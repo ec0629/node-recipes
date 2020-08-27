@@ -180,6 +180,8 @@ Testing JavaScript for Node.js with Mocha, Jonathan Mills, Pluralsight, (May 4, 
 - in the manual mock file we call jest.createMockFromModule('name_of_module') which
   automocks the module. In this example I then extended the automocked module
   for the function .request()
+- also created a mock of a user-defined module that returns a function that when
+  executed return a function with private variables
 
 ---
 
