@@ -19,6 +19,9 @@
   - [Recipe 16: basics of unit testing code with Jest](#recipe-16-basics-of-unit-testing-code-with-jest)
   - [Recipe 17: using Jest mocks to isolate code from its dependencies for unit testing](#recipe-17-using-jest-mocks-to-isolate-code-from-its-dependencies-for-unit-testing)
   - [Recipe 18: using manual mocks in Jest to mock modules and complex behaviour](#recipe-18-using-manual-mocks-in-jest-to-mock-modules-and-complex-behaviour)
+  - [Recipe 19: HTTP/HTTPS protocol functionality](#recipe-19-httphttps-protocol-functionality)
+  - [Recipe 20: using the fs module two fix corrupted files](#recipe-20-using-the-fs-module-two-fix-corrupted-files)
+  - [Recipe 21: script that removes files older than 7 days old in a directory](#recipe-21-script-that-removes-files-older-than-7-days-old-in-a-directory)
   
   [Notes](#notes)
   - [1: Understanding how require works](#1-understanding-how-require-works)
@@ -194,6 +197,18 @@ Advanced Node.js, Samer Buna, Pluralsight, (February 16, 2017)
 - handling different routes and responding in various ways to requests
 
 ---
+
+## Recipe 20: using the fs module two fix corrupted files
+Advanced Node.js, Samer Buna, Pluralsight, (February 16, 2017)  
+- Challenge: given a directory of corrupted files that have had their content duplicated
+  create a script that will remove the duplicated content.
+
+---
+
+## Recipe 21: script that removes files older than 7 days old in a directory
+Advanced Node.js, Samer Buna, Pluralsight, (February 16, 2017)  
+- the original challenge was to seed files to manually test the script, however,
+  I added the jest testing and mocking
 
 # Notes
 ## 1: Understanding how require works
