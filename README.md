@@ -219,6 +219,14 @@ Advanced Node.js, Samer Buna, Pluralsight, (February 16, 2017)
 
 ---
 
+## Recipe 23: demonstration on the improved scalability of streams
+Advanced Node.js, Samer Buna, Pluralsight, (February 16, 2017)  
+- generates a file of several million lines of code and provides two
+  api endpoints. A curl request to each will show significant differences
+  when viewing the node process in the System Monitor
+
+---
+
 # Notes
 ## 1: Understanding how require works
 when a module is created we are given access to several local variables that may appear global.
