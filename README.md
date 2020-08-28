@@ -210,6 +210,15 @@ Advanced Node.js, Samer Buna, Pluralsight, (February 16, 2017)
 - the original challenge was to seed files to manually test the script, however,
   I added the jest testing and mocking
 
+---
+
+## Recipe 22: console log file events that occur in a given directory
+Advanced Node.js, Samer Buna, Pluralsight, (February 16, 2017)  
+- code shown was taken from example provided
+- rename event occurs if file was added or removed
+
+---
+
 # Notes
 ## 1: Understanding how require works
 when a module is created we are given access to several local variables that may appear global.
