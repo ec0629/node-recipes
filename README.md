@@ -30,6 +30,7 @@
   - [4: Understanding the Event Queue](#4-understanding-the-event-queue)
   - [5: 3 ways to create Buffers objects](#5-3-ways-to-create-buffers-objects)
   - [6: Errors vs Exceptions](#6-errors-vs-exceptions)
+  - [7: Streams and Pipes](#7-streams-and-pipes)
 
 # Recipes
 ## Recipe 1: using string functions on buffers  
@@ -227,6 +228,15 @@ Advanced Node.js, Samer Buna, Pluralsight, (February 16, 2017)
 
 ---
 
+## Recipe 24: examples of stream implementations
+Advanced Node.js, Samer Buna, Pluralsight, (February 16, 2017)  
+- implementation of readable, writable, transformation and duplex streams
+- these are implemented using the simplified constructor patterns
+- this is an alternative to extending the base classes and implementing
+  _read, _write, or _transform methods
+- zip.js and unzip.js files demonstrate a more concrete implementation
+  using pipes extensively
+
 # Notes
 ## 1: Understanding how require works
 when a module is created we are given access to several local variables that may appear global.
@@ -330,3 +340,72 @@ after this error has occurred if yes then we let the program fail. Usually this 
 of unforeseen issues however.
 - Proceeding gracefully may simply mean we halt the process and inform the user that something
 wrong has occurred
+
+---
+
+## 7: Streams and Pipes
+Advanced Node.js, Samer Buna, Pluralsight, (February 16, 2017)  
+### Streams
+1. Readable
+   - i.e. fs.createReadStream
+2. Writable
+   - i.e. fs.createWriteStream
+3. Duplex (Readable and Writable)
+   - i.e. net.Socket
+   - should be thought of as a grouping of two independent streams and not one with both capabilities
+4. Transform (used to modify data as it is written or read)
+   - i.e. zlib.createGzip
+
+We use streams in one of two ways:
+1. Implement streams
+   - if we are implementing streams we are usually requiring the stream module
+2. Consume streams
+   - to consume streams we are usually piping or listening for stream events
+
+### Readable Streams
+#### Events
+- data (when data is being sent)
+- end (no more data to be consumed)
+- error
+- close
+- readable
+#### Functions
+- pipe(), unpipe()
+- read(), unshift(), resume()
+- pause(), isPaused()
+- setEncoding()
+#### Modes
+- Paused
+  - need to use stream.read() to consume
+  - when an event handler is added to a stream it automatically switches to Flowing mode
+  - stream.resume() to manually switch to Flowing
+- Flowing (data can be lost)
+  - need to listen to events to consume
+  - when an event handler is removed from a stream it automatically switches to Paused mode
+  - stream.pause() to manually switch to Paused
+
+### Writable Streams
+#### Events
+- drain (signal writable stream can receive more data)
+- finish (all data has been flushed to writable stream)
+- error
+- close
+- pipe/unpipe
+#### Functions
+- write()
+- end()
+- cork(), uncork()
+- setDefaultEncoding()
+
+### Pipes
+```js
+a.pipe(b).pipe(c).pipe(d)
+// assumes b & c are duplex streams
+
+// equivalent to
+a.pipe(b);
+b.pipe(c);
+c.pipe(d);
+```
+- Generally we handles communication between streams on an evented basis OR using pipes
+- simpler to use pipes, evented allows for greater customization
