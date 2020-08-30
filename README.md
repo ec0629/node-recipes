@@ -27,6 +27,9 @@
   - [Recipe 24: examples of stream implementations](#recipe-24-examples-of-stream-implementations)
   - [Recipe 25: 4 ways to create a new child process](#recipe-25-4-ways-to-create-a-new-child-process)
   - [Recipe 26: examples of using fork()](#recipe-26-examples-of-using-fork)
+  - [Recipe 27: improving cpu utilization using the cluster module](#recipe-27-improving-cpu-utilization-using-the-cluster-module)
+  - [Recipe 28: improving server availability using the cluster module](#recipe-28-improving-server-availability-using-the-cluster-module)
+  - [Recipe 29: restarting worker processes one at a time for code updates](#recipe-29-restarting-worker-processes-one-at-a-time-for-code-updates)
   
   [Notes](#notes)
   - [1: Understanding how require works](#1-understanding-how-require-works)
@@ -272,6 +275,50 @@ Advanced Node.js, Samer Buna, Pluralsight, (February 16, 2017)
 
 ## Recipe 26: examples of using fork()
 Advanced Node.js, Samer Buna, Pluralsight, (February 16, 2017) 
+
+---
+
+## Recipe 27: improving cpu utilization using the cluster module
+Advanced Node.js, Samer Buna, Pluralsight, (February 16, 2017)  
+- this example demonstrates the performance improvements achieved by employing node clusters
+- it also demonstrates how to cache and share common data to further improve efficiency
+- test load capabilities using apache benchmark tool
+1. Install apache bench
+```shell
+$ sudo apt install apache2-utils
+```
+2. Start node server
+```shell
+$ node server.js
+```
+3. Run apache bench
+   - makes 200 concurrent connections for 10 seconds
+   - provides statistics like
+     - requests per second
+     - time per request
+```shell
+$ ab -c200 -t10 http://localhost:8080/
+```
+4. Now run cluster.js instead and rerun apache bench
+
+---
+
+## Recipe 28: improving server availability using the cluster module
+Advanced Node.js, Samer Buna, Pluralsight, (February 16, 2017)  
+- this example demonstrates how the cluster module can listen for crashed node
+  processes and create a new process in response
+- the availability of the system can be tested by using the same ab command as
+  [Recipe 27](#recipe-27-improving-cpu-utilization-using-the-cluster-module)
+  and noting the *Failed requests* number
+
+---
+
+## Recipe 29: restarting worker processes one at a time for code updates
+Advanced Node.js, Samer Buna, Pluralsight, (February 16, 2017)  
+- we issue the command for each worker to restart with:
+```shell
+$ kill -SIGUSR2 master_process_pid
+```
 
 ---
 
