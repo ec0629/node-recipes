@@ -281,6 +281,9 @@ Advanced Node.js, Samer Buna, Pluralsight, (February 16, 2017)
 ## Recipe 27: improving cpu utilization using the cluster module
 Advanced Node.js, Samer Buna, Pluralsight, (February 16, 2017)  
 - this example demonstrates the performance improvements achieved by employing node clusters
+- **NOTE:** when using clusters each worker process has its own namespace and therefore
+  caching data and user sessions need to be handled either in database or in-memory storage
+  such as redis
 - it also demonstrates how to cache and share common data to further improve efficiency
 - test load capabilities using apache benchmark tool
 1. Install apache bench
