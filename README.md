@@ -22,6 +22,11 @@
   - [Recipe 19: HTTP/HTTPS protocol functionality](#recipe-19-httphttps-protocol-functionality)
   - [Recipe 20: using the fs module two fix corrupted files](#recipe-20-using-the-fs-module-two-fix-corrupted-files)
   - [Recipe 21: script that removes files older than 7 days old in a directory](#recipe-21-script-that-removes-files-older-than-7-days-old-in-a-directory)
+  - [Recipe 22: console log file events that occur in a given directory](#recipe-22-console-log-file-events-that-occur-in-a-given-directory)
+  - [Recipe 23: demonstration on the improved scalability of streams](#recipe-23-demonstration-on-the-improved-scalability-of-streams)
+  - [Recipe 24: examples of stream implementations](#recipe-24-examples-of-stream-implementations)
+  - [Recipe 25: 4 ways to create a new child process](#recipe-25-4-ways-to-create-a-new-child-process)
+  - [Recipe 26: examples of using fork()](#recipe-26-examples-of-using-fork)
   
   [Notes](#notes)
   - [1: Understanding how require works](#1-understanding-how-require-works)
@@ -237,6 +242,39 @@ Advanced Node.js, Samer Buna, Pluralsight, (February 16, 2017)
 - zip.js and unzip.js files demonstrate a more concrete implementation
   using pipes extensively
 
+---
+
+## Recipe 25: 4 ways to create a new child process
+Advanced Node.js, Samer Buna, Pluralsight, (February 16, 2017) 
+- child process events:
+  - exit: child process completes
+  - disconnect: parent process manually calls child disconnect method
+  - error: fires when process cannot be manually disconnected or killed
+  - message: triggered when child process invokes the send() method (only available when using **fork()**)
+  - close: emitted when stdio objects (out, in, err) of child process are closed
+- the stdio objects of the child process emit standard stream events
+1. spawn()
+   - launches a command in a new child process
+   - **DOES NOT** by default create a new shell instance when issuing a command
+      however, as in Example #4 this can be configured
+   - preferable to exec if data returned is large
+   - Example #4 shows how to setup child process to use its parent's stdio
+2. exec()
+   - launches a command but **DOES** start a new shell session for the command (therefore likely less efficient that spawn)
+   - will batch the output and then pass all data to a callback
+   - should only be used if returned data is small
+3. execFile()
+   - executes a file **WITHOUT** starting a new shell session. Therefore more efficient than exec but cannot use shell syntax
+4. fork()
+   - establishes an IPC connection between parent and child process which is accomplished using the **send()** command
+
+---
+
+## Recipe 26: examples of using fork()
+Advanced Node.js, Samer Buna, Pluralsight, (February 16, 2017) 
+
+---
+
 # Notes
 ## 1: Understanding how require works
 when a module is created we are given access to several local variables that may appear global.
@@ -409,3 +447,5 @@ c.pipe(d);
 ```
 - Generally we handles communication between streams on an evented basis OR using pipes
 - simpler to use pipes, evented allows for greater customization
+
+---
