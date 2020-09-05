@@ -30,6 +30,7 @@
   - [Recipe 27: improving cpu utilization using the cluster module](#recipe-27-improving-cpu-utilization-using-the-cluster-module)
   - [Recipe 28: improving server availability using the cluster module](#recipe-28-improving-server-availability-using-the-cluster-module)
   - [Recipe 29: restarting worker processes one at a time for code updates](#recipe-29-restarting-worker-processes-one-at-a-time-for-code-updates)
+  - [Recipe 30: playground for understanding Buffers and how they relate to strings]
   
   [Notes](#notes)
   - [1: Understanding how require works](#1-understanding-how-require-works)
